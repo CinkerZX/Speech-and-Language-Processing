@@ -148,6 +148,9 @@ n_gram_2(corpora, n, n_sen)
 n = 3
 n_sen = 20
 n_gram_2(corpora, n, n_sen)
+n = 3
+n_sen = 20
+n_gram_2(corpora, n, n_sen)
     
     
     
