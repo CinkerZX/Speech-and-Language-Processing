@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Sep 29 00:39:54 2020
-
-@author: Cinker
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Sun Sep 27 22:57:16 2020
 
 @author: Cinker
@@ -74,8 +67,8 @@ words_aid_fre = nltk.FreqDist(tokens_aid)
 stop_words = stopwords.words('english')
 
 #dict_filter = lambda Words_aid_fre, Stop_words: dict((word,Words_aid_fre[word]) for word in Words_aid_fre[word] if word not in Stop_words)
-#dict_filter = lambda words_aid_fre, Stop_words: dict((k,v) for k,v in words_aid_fre.items() if k not in Stop_words)
-filtered_words_aid_fre = words_aid_fre
+dict_filter = lambda words_aid_fre, Stop_words: dict((k,v) for k,v in words_aid_fre.items() if k not in Stop_words)
+filtered_words_aid_fre = dict_filter(words_aid_fre, stop_words)
 n_aid = len(filtered_words_aid_fre)
 acc_fre_aid = sum(list(filtered_words_aid_fre.values()))
 
@@ -84,7 +77,7 @@ tokens_not = nltk.word_tokenize(' '.join(train_not_2))
 #The frequency of words in not
 words_not_fre = nltk.FreqDist(tokens_not)
 # delete the stop words
-filtered_words_not_fre = words_not_fre
+filtered_words_not_fre = dict_filter(words_not_fre, stop_words)
 n_not = len(filtered_words_not_fre)
 acc_fre_not = sum(list(filtered_words_not_fre.values()))
 
@@ -100,9 +93,9 @@ def classify(doc):
     words_doc_fre = nltk.FreqDist(tokens_doc)
     
     # delete the stopwords
-    #stop_words = stopwords.words('english')
-    # dict_filter = lambda words_aid_fre, Stop_words: dict((k,v) for k,v in words_aid_fre.items() if k not in Stop_words)
-    # words_doc_fre = dict_filter(words_doc_fre, stop_words)
+    stop_words = stopwords.words('english')
+    dict_filter = lambda words_aid_fre, Stop_words: dict((k,v) for k,v in words_aid_fre.items() if k not in Stop_words)
+    words_doc_fre = dict_filter(words_doc_fre, stop_words)
     words_doc = list(words_doc_fre.keys())
     power = list(words_doc_fre.values())
     
